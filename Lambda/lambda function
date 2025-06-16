@@ -1,1 +1,112 @@
+### Lambda for payment request ###
+import os
+import boto3
+import json
 
+# Initialize DynamoDB client
+dynamodb = boto3.resource("dynamodb")
+table = dynamodb.Table(os.environ["PAYMENTS_TABLE"])
+
+def lambda_handler(event, context):
+    try:
+        detail = event["detail"]
+        payment_id = detail["paymentId"]
+        amount = detail["amount"]
+        method = detail.get("method", "UNKNOWN")
+
+        # Construct item to store in DynamoDB
+        item = {
+            "paymentId": payment_id,
+            "amount": amount,
+            "method": method,
+            "status": "PENDING"
+        }
+
+        table.put_item(Item=item)
+
+        return {
+            "statusCode": 200,
+            "body": json.dumps({"message": "Payment request recorded as PENDING."})
+        }
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return {
+            "statusCode": 500,
+            "body": json.dumps({"error": str(e)})
+        }
+
+### Lambda for payment result ###
+import os
+import boto3
+import json
+
+# Initialize DynamoDB client
+dynamodb = boto3.resource("dynamodb")
+table = dynamodb.Table(os.environ["PAYMENTS_TABLE"])
+
+def lambda_handler(event, context):
+    try:
+        detail = event["detail"]
+        payment_id = detail["paymentId"]
+        amount = detail["amount"]
+        method = detail.get("method", "UNKNOWN")
+
+        # Construct item to store in DynamoDB
+        item = {
+            "paymentId": payment_id,
+            "amount": amount,
+            "method": method,
+            "status": "PENDING"
+        }
+
+        table.put_item(Item=item)
+
+        return {
+            "statusCode": 200,
+            "body": json.dumps({"message": "Payment request recorded as PENDING."})
+        }
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return {
+            "statusCode": 500,
+            "body": json.dumps({"error": str(e)})
+        }
+### Lambda for invoice ###
+import os
+import boto3
+import json
+
+# Initialize DynamoDB client
+dynamodb = boto3.resource("dynamodb")
+table = dynamodb.Table(os.environ["PAYMENTS_TABLE"])
+
+def lambda_handler(event, context):
+    try:
+        detail = event["detail"]
+        payment_id = detail["paymentId"]
+        amount = detail["amount"]
+        method = detail.get("method", "UNKNOWN")
+
+        # Construct item to store in DynamoDB
+        item = {
+            "paymentId": payment_id,
+            "amount": amount,
+            "method": method,
+            "status": "PENDING"
+        }
+
+        table.put_item(Item=item)
+
+        return {
+            "statusCode": 200,
+            "body": json.dumps({"message": "Payment request recorded as PENDING."})
+        }
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return {
+            "statusCode": 500,
+            "body": json.dumps({"error": str(e)})
+        }

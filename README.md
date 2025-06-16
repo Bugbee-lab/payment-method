@@ -18,7 +18,6 @@ AWS Services for this :
 2.	Processing Logic :  Lambda
 3.	Data Store :  Dynamodb
 4.	SQS and DLQ : Handling payment failure
-5.	Unit test : Terraform(go language)
-6.	
+5.	Unit test : Terraform(go language)	
 
  

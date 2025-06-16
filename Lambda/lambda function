@@ -1,3 +1,6 @@
+
+####Written three lambda together but in practical have to create different folder and run as zipfile ####
+
 ### Lambda handler for payment request ###
 import os
 import boto3
